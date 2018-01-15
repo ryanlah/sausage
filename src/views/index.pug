@@ -1,0 +1,30 @@
+extends layout
+
+block linkcontent
+  link(rel="stylesheet", href="/css/p-index.css")
+  link(rel="stylesheet", href="/css/icons-blue.css")
+
+block content
+  .jumbotron.jumbo-bg
+    .container
+      h1.display-3.jumbo-title Are you ready ?
+      p You can upload any videos or photos here and share with your friends.
+      p.jumbo-button
+        a(class="btn btn-primary btn-lg" href="/upload", role="button") Upload Now !
+  .container.sections-container
+    .row
+      .col-md-4
+        span.icon-blue.icon-blue-wave
+        h2 Stream
+        p You will find all the activities on the sausage, new uploaded videos, images.
+        p: a(class="btn btn-default", href="/stream", role="button") Go to Stream
+      .col-md-4
+        span.icon-blue.icon-blue-pin
+        h2 Collection
+        p  Sausage allows you to create a collection to keep your favorite videos, images as an ablum.
+        p: a(class="btn btn-default", href="/collection", role="button") Go to Collection
+      .col-md-4
+        span.icon-blue.icon-blue-gear
+        h2 Manage
+        p In manage page you can upload new videos, images or delete them. 
+        p: a(class="btn btn-default", href="/manage", role="button") Go to Manage

@@ -1,0 +1,116 @@
+.icon-blue {
+    background-image: url(/img/icons-blue.png);
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background-size: cover; 
+}  
+.icon-blue.icon-blue-md {
+    width: 40px;
+    height: 40px; }
+.icon-blue.icon-blue-sm {
+    width: 30px;
+    height: 30px; }
+.icon-blue.icon-blue-xs {
+    width: 20px;
+    height: 20px; }
+.icon-blue.icon-blue-files {
+    background-position: 0px 0%; }
+.icon-blue.icon-blue-refresh {
+    background-position: 0px 100%; }
+.icon-blue.icon-blue-turnleft {
+    background-position: 0px 200%; }
+.icon-blue.icon-blue-turnright {
+    background-position: 0px 300%; }
+.icon-blue.icon-blue-leftarrow {
+    background-position: 0px 400%; }
+.icon-blue.icon-blue-rightarrow {
+    background-position: 0px 500%; }
+.icon-blue.icon-blue-no {
+    background-position: 0px 600%; }
+.icon-blue.icon-blue-yes {
+    background-position: 0px 700%; }
+.icon-blue.icon-blue-list {
+    background-position: 0px 800%; }
+.icon-blue.icon-blue-heart {
+    background-position: 0px 900%; }
+.icon-blue.icon-blue-gear {
+    background-position: 0px 1000%; }
+.icon-blue.icon-blue-bell {
+    background-position: 0px 1100%; }
+.icon-blue.icon-blue-bulb {
+    background-position: 0px 1200%; }
+.icon-blue.icon-blue-alarm {
+    background-position: 0px 1300%; }
+.icon-blue.icon-blue-camera {
+    background-position: 0px 1400%; }
+.icon-blue.icon-blue-todo {
+    background-position: 0px 1500%; }
+.icon-blue.icon-blue-mouse {
+    background-position: 0px 1600%; }
+.icon-blue.icon-blue-laptop {
+    background-position: 0px 1700%; }
+.icon-blue.icon-blue-boardclock {
+    background-position: 0px 1800%; }
+.icon-blue.icon-blue-calender {
+    background-position: 0px 1900%; }
+.icon-blue.icon-blue-chartball {
+    background-position: 0px 2000%; }
+.icon-blue.icon-blue-chartrect {
+    background-position: 0px 2100%; }
+.icon-blue.icon-blue-notepencil {
+    background-position: 0px 2200%; }
+.icon-blue.icon-blue-pencil {
+    background-position: 0px 2300%; }
+.icon-blue.icon-blue-rolling {
+    background-position: 0px 2400%; }
+.icon-blue.icon-blue-map {
+    background-position: 0px 2500%; }
+.icon-blue.icon-blue-magnifier {
+    background-position: 0px 2600%; }
+.icon-blue.icon-blue-compasssimple {
+    background-position: 0px 2700%; }
+.icon-blue.icon-blue-globe {
+    background-position: 0px 2800%; }
+.icon-blue.icon-blue-chrome {
+    background-position: 0px 2900%; }
+.icon-blue.icon-blue-compass {
+    background-position: 0px 3000%; }
+.icon-blue.icon-blue-locate {
+    background-position: 0px 3100%; }
+.icon-blue.icon-blue-wave {
+    background-position: 0px 3200%; }
+.icon-blue.icon-blue-mic{
+    background-position: 0px 3300%; }
+.icon-blue.icon-blue-speaker {
+    background-position: 0px 3400%; }
+.icon-blue.icon-blue-pin {
+    background-position: 0px 3500%; }
+.icon-blue.icon-blue-left {
+    background-position: 0px 3600%; }
+.icon-blue.icon-blue-right {
+    background-position: 0px 3700%; }
+.icon-blue.icon-blue-book {
+    background-position: 0px 3800%; }
+.icon-blue.icon-blue-calender2 {
+    background-position: 0px 3900%; }
+.icon-blue.icon-blue-macwindow {
+    background-position: 0px 4000%; }
+.icon-blue.icon-blue-boardchart {
+    background-position: 0px 4100%; }
+.icon-blue.icon-blue-board {
+    background-position: 0px 4200%; }
+.icon-blue.icon-blue-file {
+    background-position: 0px 4300%; }
+.icon-blue.icon-blue-pageempty {
+    background-position: 0px 4400%; }
+.icon-blue.icon-blue-folder {
+    background-position: 0px 4500%; }
+.icon-blue.icon-blue-messagedot {
+    background-position: 0px 4600%; }
+.icon-blue.icon-blue-messageline {
+    background-position: 0px 4700%; }
+.icon-blue.icon-blue-messagedotsharp {
+    background-position: 0px 4800%; }
+.icon-blue.icon-blue-messagelinesharp {
+    background-position: 0px 4900%; }
