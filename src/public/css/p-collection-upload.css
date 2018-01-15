@@ -1,0 +1,20 @@
+.breadcrumb-space {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.upload-message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.upload-button {
+    padding-left : 20px;
+    padding-right: 20px;
+}
+.delete-button {
+    border: 0;
+    background-color: transparent;
+    color : transparent;
+    height: 21px;
+    width: 21px;
+    padding: 0;
+}

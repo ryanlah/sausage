@@ -8,8 +8,8 @@ var globalVariables = {
         schema : 'mmc'
     },
     varibales : {
-        uploadCache : 'E:\\node\\files\\cache',
-        staticFilesPath : 'E:\\node\\files\\static',
+        uploadCache : 'D:\\sgk\\cache',
+        staticFilesPath : 'D:\\sgk\\files',
         pageSize : 20,
         thumbSize : {
             height : 400,

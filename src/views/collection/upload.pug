@@ -1,0 +1,46 @@
+extends ../layout
+
+block linkcontent
+    link(rel="stylesheet", href="/css/p-collection-upload.css")
+    link(rel="stylesheet", href="/css/icons-blue.css")
+
+block scriptcontent
+    script(src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js").
+    script(src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js").
+    script(src="/js/p-collection-upload.js").
+
+block content   
+    .container
+        .row.breadcrumb-space
+            ol.breadcrumb
+                li: a(href="/") Home
+                li: a(href="/collection") Collection
+                li.active Upload Files
+        #app.panel.panel-default
+            .panel-body
+                .row
+                    .col-md-12
+                        .control-button.text-center
+                            p: span.icon-blue.icon-blue-files
+                            p: .btn-group(role="group")
+                                button.btn.btn-default.upload-button(@click ="openFileDialog", disable="inUploadState") Select Files
+                                button.btn.btn-default.upload-button(@click ="uploadFiles", disable="inUploadState") Upload
+                            input.hidden(type="file", id="fileUploader", accept="image/jpeg,video/mp4", multiple="multiple", @change ="selectFile($event)", @click.native="fileClick")
+                    .col-md-12
+                        h4.text-center.upload-message(v-if="this.filesToUpload.length==0") {{uploadMessage}}
+                        table.table(v-if="this.filesToUpload.length>0")
+                            thead: tr
+                                th #
+                                th File Name
+                                th Size
+                                th.text-center Status
+                            tr(v-for="(item, index) of filesToUpload")
+                                th(scope="row") {{item.id=index+1}}
+                                td {{item.file.name}}
+                                td {{caculateSize(item.file.size)}}
+                                td.text-center
+                                    span(v-if="!item.uploading")
+                                        button.delete-button(@click="deleteFile(index)"): span.icon-blue.icon-blue-no.icon-blue-xs
+                                    span(v-if="item.uploading") {{item.progress}}
+
+                        

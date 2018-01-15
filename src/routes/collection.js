@@ -8,6 +8,11 @@ router.get('/', function(req, res, next) {
   res.render('collection/index', { currentPage: 'collection' });
 });
 
+router.get('/upload', function(req, res, next) {
+  res.render('collection/upload', { currentPage: 'collection' });
+});
+
+
 router.get('/detail', function(req, res, next) {
   let pageData = { 
     currentPage : 'collection',

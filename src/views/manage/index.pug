@@ -1,32 +1,21 @@
 extends ../layout
 
 block linkcontent
-  link(rel="stylesheet", href="/css/p-manage-index.css")
-  link(rel="stylesheet", href="/css/icons-blue.css")
+    link(rel="stylesheet", href="/css/p-manage-index.css")
+    link(rel="stylesheet", href="/css/icons-blue.css")
 
-block content
-    .container.breadcrumb-space
-        ol.breadcrumb
-            li: a(href="/") Home
-            li.active Manage
+block content   
     .container
+        .row.breadcrumb-space
+            ol.breadcrumb
+                li: a(href="/") Home
+                li.active Manage
         .row
-            .col-md-4
-                .panel.panel-default
-                    .panel-heading 
-                        span Upload
-                    .panel-body
-                        span.icon-blue.icon-blue-file
-                        p: a.btn.btn-default(href="#", role="button") Upload Files
-            .col-md-4
-                .panel.panel-default
-                    .panel-heading Manage Collection
-                    .panel-body
-                        span.icon-blue.icon-blue-file
-                        p: a.btn.btn-default(href="#", role="button") Manage Collection
-            .col-md-
-                .panel.panel-default
-                    .panel-heading Manage Files
-                    .panel-body
-                        span.icon-blue.icon-blue-file
-                        p: a.btn.btn-default(href="#", role="button") Manage Files
+            .panel.panel-default
+                .panel-heading 
+                    span Control Panel
+                .panel-body
+                        .control-button.text-center.pull-left
+                            p: span.icon-blue.icon-blue-pin
+                            p: a.btn.btn-default(href="/manage/collection", role="button") Manage Collection
+                        
