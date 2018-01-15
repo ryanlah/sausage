@@ -1,0 +1,18 @@
+.jumbo-bg {
+    background-image: url("/img/bg-index-jumbo.jpg");
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: center center;
+    color: #000;
+}
+.jumbo-title {
+    padding-top: 80px;
+}
+.jumbo-button {
+    padding-bottom: 80px;
+}
+.sections-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
