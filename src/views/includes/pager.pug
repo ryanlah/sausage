@@ -1,0 +1,25 @@
+- if (pager.total > 1)
+    .hidden-xs.hidden-sm
+        nav.text-center(aria-label="Page navigation")
+            ul.pagination
+                li(class=pager.firstPage.style): a(href=pager.firstPage.url, aria-label="First")
+                    span.glyphicon.glyphicon-step-backward(aria-hidden="true")
+                li(class=pager.previousPage.style): a(href=pager.previousPage.url , aria-label="Previous")
+                    span.glyphicon.glyphicon-backward(aria-hidden="true")
+                each val, index in pager.pages
+                    li(class=val.style): a(href=val.url)=val.title
+                li(class=pager.nextPage.style): a(href=pager.nextPage.url, aria-label="Next")
+                    span.glyphicon.glyphicon-forward(aria-hidden="true") 
+                li(class=pager.lastPage.style): a(href=pager.lastPage.url, aria-label="Last")
+                    span.glyphicon.glyphicon-step-forward(aria-hidden="true") 
+    .hidden-md.hidden-lg
+        nav.text-center(aria-label="Page navigation")
+            ul.pagination
+                li(class=pager.firstPage.style): a(href=pager.firstPage.url, aria-label="First")
+                    span.glyphicon.glyphicon-step-backward(aria-hidden="true")
+                li(class=pager.previousPage.style): a(href=pager.previousPage.url , aria-label="Previous")
+                    span.glyphicon.glyphicon-backward(aria-hidden="true")
+                li(class=pager.nextPage.style): a(href=pager.nextPage.url, aria-label="Next")
+                    span.glyphicon.glyphicon-forward(aria-hidden="true") 
+                li(class=pager.lastPage.style): a(href=pager.lastPage.url, aria-label="Last")
+                    span.glyphicon.glyphicon-step-forward(aria-hidden="true") 

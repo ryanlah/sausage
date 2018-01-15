@@ -9,7 +9,12 @@ var globalVariables = {
     },
     varibales : {
         uploadCache : 'E:\\node\\files\\cache',
-        staticFilesPath : 'E:\\node\\files\\static'
+        staticFilesPath : 'E:\\node\\files\\static',
+        pageSize : 20,
+        thumbSize : {
+            height : 400,
+            width : 400
+        }
     }
 };
 
