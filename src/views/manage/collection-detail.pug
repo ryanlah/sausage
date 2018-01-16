@@ -45,16 +45,10 @@ block content
                     .modal-header
                         h4.modal-title Select Parent
                     .modal-body
-                        span.glyphicon.glyphicon-minus
-                        span.button-text Root
-                            .tree-sub
-                                .
-                                span.glyphicon.glyphicon-plus
-                                span.button-text Root
-                                span.glyphicon.glyphicon-minus
-                                span.button-text Root
-                                span.glyphicon.glyphicon-plus
-                                span.button-text Root
+                        .tree-sub
+                            p: span.glyphicon.glyphicon-minus: span.button-text Root
+                                .tree-sub(v-for="sub in querySubs()")
+                                    p: span(:class="sub.class"): span.button-text {{sub.name}}                      
                     .modal-footer
                         button.btn.btn-default(data-dismiss="modal")
                             span.glyphicon.glyphicon-remove
