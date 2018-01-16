@@ -1,0 +1,62 @@
+extends ../layout
+
+block linkcontent
+    link(rel="stylesheet", href="/css/p-manage-collection.css")
+
+block scriptcontent
+    script(src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js").
+    script(src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js").
+    script(src="/js/p-manage-collection.js").
+    
+block content   
+    #app.container
+        .row
+            ol.breadcrumb
+                li: a(href="/") Home
+                li: a(href="/manage") Manage
+                li.active Manage Collections
+        .row
+            .panel.panel-default
+                .panel-heading 
+                    span Manage Collections
+                .panel-body
+                    .container.panel-space
+                        .row.text-center
+                            .btn-group(role="group")
+                                a.btn.btn-default(role="button", href="/manage/collection/detail")
+                                    span.glyphicon.glyphicon-plus(aria-hidden="true")
+                                    span.hidden-xs.button-text CREATE 
+                                button.btn.btn-default(:disabled="!enableEdit", @click="editSelected")
+                                    span.glyphicon.glyphicon-pencil(aria-hidden="true")
+                                    span.hidden-xs.button-text EDIT
+                                button.btn.btn-danger(:disabled="!enableDelete", data-toggle="modal", data-target="#deleteConfirm")
+                                    span.glyphicon.glyphicon-trash(aria-hidden="true")
+                                    span.hidden-xs.button-text DELETE
+                    .container
+                        .row
+                            .col-xs-6.col-sm-3.col-md-2(v-for="item in source")
+                                .thumbnail(href="#", @click="checkThumb(item)")
+                                    img(:src="item.src", :alt="item.name", :class="item.style")
+                                    .caption
+                                        span.glyphicon.glyphicon-ok(v-if="item.checked")
+                                        span.thumb-text {{item.name}}
+                        .row
+                            include ../includes/pager.pug
+        #deleteConfirm.modal.fade(tabindex="-1", role="dialog")
+            .modal-dialog(role="document")
+                .modal-content
+                    .modal-header
+                        h4.modal-title Confirmation
+                    .modal-body
+                        p Do you want to delete these collections ?
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal")
+                            span.glyphicon.glyphicon-remove
+                            span.button-text Cancel
+                        button.btn.btn-danger(@click="deleteSelected")
+                            span.glyphicon.glyphicon-ok
+                            span.button-text Delete
+                        
+
+                        
+                                
