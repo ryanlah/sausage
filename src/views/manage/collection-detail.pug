@@ -30,32 +30,15 @@ block content
                                 label.col-sm-2.control-label(for="txtDesc") Description
                                 .col-sm-9: textarea#txtDesc.form-control(rows="3", placeholder="Description")
                             .form-group
-                                label.col-sm-2.control-label(for="txtRoot") Parent
+                                label.col-sm-2.control-label(for="txtRoot") Cover
                                 .col-sm-9
-                                    button.btn.btn-default(type="button", data-toggle="modal", data-target="#selectParent")
-                                        span ...
+                                    img.img-circle(src="/img/img-thumb.jpg", alt="", style="height:200px; height:200px;")
+                                    //button.btn.btn-default(type="button"): span ...
                             .form-group
                                 .col-sm-offset-2.col-sm-10
                                     span.button-space: button.btn.btn-primary(type="submit")
                                         span.glyphicon.glyphicon-floppy-saved
                                         span.button-icon Save Collection
-        #selectParent.modal.fade(tabindex="-1", role="dialog")
-            .modal-dialog(role="document")
-                .modal-content
-                    .modal-header
-                        h4.modal-title Select Parent
-                    .modal-body
-                        .tree-sub
-                            p: span.glyphicon.glyphicon-minus: span.button-text Root
-                                .tree-sub(v-for="sub in querySubs()")
-                                    p: span(:class="sub.class"): span.button-text {{sub.name}}                      
-                    .modal-footer
-                        button.btn.btn-default(data-dismiss="modal")
-                            span.glyphicon.glyphicon-remove
-                            span.button-text Cancel
-                        button.btn.btn-primary
-                            span.glyphicon.glyphicon-ok
-                            span.button-text Select
    
                         
 

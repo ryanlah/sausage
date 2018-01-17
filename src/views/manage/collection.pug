@@ -20,25 +20,30 @@ block content
                 .panel-heading 
                     span Manage Collections
                 .panel-body
-                    .container.panel-space
-                        .row.text-center
+                    .container.text-center
+                        .row
+                            .page-header
+                                h2 Collection Name
+                        .row.panel-space
                             .btn-group(role="group")
                                 a.btn.btn-default(role="button", href="/manage/collection/detail")
                                     span.glyphicon.glyphicon-plus(aria-hidden="true")
-                                    span.hidden-xs.button-text CREATE 
+                                    span.hidden-xs.button-text CREATE
                                 button.btn.btn-default(:disabled="!enableEdit", @click="editSelected")
                                     span.glyphicon.glyphicon-pencil(aria-hidden="true")
                                     span.hidden-xs.button-text EDIT
                                 button.btn.btn-danger(:disabled="!enableDelete", data-toggle="modal", data-target="#deleteConfirm")
                                     span.glyphicon.glyphicon-trash(aria-hidden="true")
                                     span.hidden-xs.button-text DELETE
-                    .container
+                        .row
+                            .col-xs-12
+                                p: <strong>( 12 / 100 )</strong>
                         .row
                             .col-xs-6.col-sm-3.col-md-2(v-for="item in source")
-                                .thumbnail(href="#", @click="checkThumb(item)")
+                                .thumbnail(href="#")
                                     img(:src="item.src", :alt="item.name", :class="item.style")
                                     .caption
-                                        span.glyphicon.glyphicon-ok(v-if="item.checked")
+                                        span.pull-left: input(type="checkbox", v-model="item.checked", @click="checkThumb(item)")
                                         span.thumb-text {{item.name}}
                         .row
                             include ../includes/pager.pug

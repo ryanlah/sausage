@@ -1,4 +1,7 @@
 Vue.prototype.$http = axios;
+Vue.prototype.showUploadDialog = function(){
+    $("#fileUploader").trigger("click");
+};
 const MB = 1024 * 1024;
 const UPLOAD_CONFIG = {
     headers: {
@@ -31,7 +34,7 @@ var app = new Vue({
             }
         },
         openFileDialog : function(){
-            $("#fileUploader").trigger("click");
+            this.showUploadDialog();
         },
         deleteFile : function(fileIndex){
             this.filesToUpload.splice(fileIndex, 1);

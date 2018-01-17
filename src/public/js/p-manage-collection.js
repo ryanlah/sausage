@@ -20,13 +20,20 @@ function testData() {
     return data;
 };
 
+Vue.prototype.openConfirmDialog = () => {$("#deleteConfirm").modal("show");};
+Vue.prototype.closeConfirmDialog = () => {$("#deleteConfirm").modal("hide");};
+Vue.prototype.toggleConfirmDialog = () => {$("#deleteConfirm").modal("toggle");};
+Vue.prototype.redirect = (url) => {window.location.href=url;};
+
 var app = new Vue({
     el : "#app",
     data : {
         enableEdit : false,
         enableDelete : false,
+        enableCheck : false,
         selected : [],
-        source : testData()
+        source : testData(),
+        collectionId : 0
     },
     methods : {
         checkThumb : function(item){
@@ -54,15 +61,22 @@ var app = new Vue({
             this.selected.splice(index, 1);
         },
         setButtons :  function(length){
-            this.enableEdit = length == 1;
             this.enableDelete = length > 0;
         },
         editSelected : function(){
             let url = "/manage/collection/detail/" + this.selected[0].id;
-            window.location.href = url;
+            this.redirect(url);
         },
         deleteSelected : function(){
-            $("#deleteConfirm").modal("hide");
-        }
+            this.closeConfirmDialog();
+        },
+        openSelected : function(item){
+            
+        },
+        enableDelete : function(enable){
+            this.source.forEach(item => {
+                item.enable = enable;
+            });
+        },
     }
 });
