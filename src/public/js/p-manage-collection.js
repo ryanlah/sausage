@@ -1,20 +1,20 @@
 function testData() {
     var data = [
-        {id:1, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:2, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:3, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:4, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:5, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:6, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:7, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:8, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:9, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:10, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:11, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:12, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:13, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:14, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""},
-        {id:15, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : ""}
+        {id:1, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:2, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:3, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:4, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:5, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:6, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:7, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:8, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:9, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:10, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:11, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:12, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:13, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:14, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:15, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false}
     ];
 
     return data;
@@ -38,9 +38,9 @@ var app = new Vue({
         checkThumb : function(item){
             item.checked = !item.checked;
             if(item.checked){
-                item.style = "thumb-icon";
+                item.style = true;
             }else{
-                item.style = "";
+                item.style = false;
             }
             this.handleCheckedState();
         },

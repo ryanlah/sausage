@@ -51,7 +51,7 @@ block content
                         .row
                             .col-xs-6.col-sm-3.col-md-2(v-for="item in source")
                                 .thumbnail(href="#", @click="checkThumb(item)")
-                                    img(:src="item.src", :alt="item.name", :class="item.style")
+                                    img(:src="item.src", :alt="item.name", :class="{'thumb-icon':item.style}")
                                     .caption
                                         span.pull-left: input(type="checkbox", v-model="item.checked")
                                         span.thumb-text {{item.name}}
