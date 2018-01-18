@@ -1,0 +1,59 @@
+extends ../layout
+
+block linkcontent
+    link(rel="stylesheet", href="/css/p-manage-collection-edit.css")
+
+block scriptcontent
+    script(src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js").
+    script(src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js").
+    script(src="/js/p-manage-collection-edit.js").
+    
+block content
+    input#collectionData(type="hidden", value=model)
+    #app.container
+        .row
+            ol.breadcrumb
+                li: a(href="/") Home
+                li: a(href="/manage") Manage
+                li: a(href="/manage/collection") Collections
+                li.active=collectionId > 0 ? "Edit" : "Create"
+        .row
+            .panel.panel-default
+                .panel-heading
+                    span=collectionId > 0 ? "Edit Collection" : "Create Collection"
+                .panel-body
+                    .container.panel-space
+                        .alert.alert-danger(role="alert", v-if="showErrorTip") Please check your inputs
+                        form.form-horizontal
+                            .form-group
+                                label.col-sm-2.control-label Parent
+                                .col-sm-9: p.form-control-static {{collection.name}}
+                            .form-group
+                                label.col-sm-2.control-label(for="ddlType") Type
+                                .col-sm-9
+                                    select#ddlType.form-control(placeholder="Type", v-model="model.type")
+                                        option(value="c", selected="selected") Collection
+                                        option(value="g") Gallery
+                            #gr-name(:class="validations.name.class")
+                                label.col-sm-2.control-label(for="txtName") Name
+                                .col-sm-9: input#txtName.form-control(type="text", v-model="model.name", placeholder="Name")
+                            .form-group(v-if="model.type=='g'")
+                                label.col-sm-2.control-label(for="txtDesc") Description
+                                .col-sm-9: textarea#txtDesc.form-control(v-model="model.desc", rows="3", placeholder="Description")
+                            .form-group(v-if="model.type=='g'")
+                                label.col-sm-2.control-label(for="txtRoot") Cover
+                                .col-sm-9
+                                    a.thumbnail(href="#", @click="uploadCover").cover
+                                        img(:src="preview", alt="Cover")
+                                    input#uploadCoverFile.hidden(type="file", @change="setCoverFile($event)")
+                            .form-group
+                                .col-sm-offset-2.col-sm-10
+                                    span.button-space: button.btn.btn-primary.button-size(type="submit", @click="save") SAVE
+                                    span.button-space: button.btn.btn-primary.button-size(type="button", @click="cancel") CANCEL
+   
+                        
+
+                        
+
+                        
+                                

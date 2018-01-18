@@ -28,10 +28,9 @@ Vue.prototype.redirect = (url) => {window.location.href=url;};
 var app = new Vue({
     el : "#app",
     data : {
-        enableEdit : false,
         enableDelete : false,
-        enableCheck : false,
-        selected : [],
+        enableParent : false,
+        enableOpen : false,
         source : testData(),
         collectionId : 0
     },
@@ -40,42 +39,49 @@ var app = new Vue({
             item.checked = !item.checked;
             if(item.checked){
                 item.style = "thumb-icon";
-                this.selectOne(item);
             }else{
                 item.style = "";
-                this.removeOne(item);
             }
-            this.setButtons(this.selected.length);
+            this.handleCheckedState();
         },
-        selectOne : function(item){
-            this.selected.push(item);
+        handleCheckedState : function(){
+            let selected = this.getSelected();
+            this.enableDelete = selected.length > 0;
+            this.enableOpen = selected.length == 1;
         },
-        removeOne : function(item){
-            let index = 0;
-            for(let i=0; i< this.selected.length; i++){
-                if(item.id == this.selected[i].id){
-                    index = i;
-                    break;
+        getSelected : function(){
+            let selected = [];
+            this.source.forEach(item => {
+                if(item.checked){
+                    selected.push(item.id);
                 }
-            }
-            this.selected.splice(index, 1);
+            });
+            return selected;
         },
-        setButtons :  function(length){
-            this.enableDelete = length > 0;
+        createNew : function(){
+            let url = "/manage/collection/create/" + this.collectionId;
+            this.redirect(url);
         },
         editSelected : function(){
-            let url = "/manage/collection/detail/" + this.selected[0].id;
+            let url = "/manage/collection/edit/" + this.selected[0].id;
             this.redirect(url);
         },
         deleteSelected : function(){
             this.closeConfirmDialog();
         },
-        openSelected : function(item){
-            
+        goParent : function(){
+
         },
-        enableDelete : function(enable){
+        openSelected : function(){
+            let url = "/manage/collection/detail/" + this.selected[0].id;
+            this.redirect(url);
+        },
+        selectAllChecked : function(event){
+            let checked = event.target.checked;
             this.source.forEach(item => {
-                item.enable = enable;
+                if(item.checked != checked){
+                    this.checkThumb(item);
+                }
             });
         },
     }

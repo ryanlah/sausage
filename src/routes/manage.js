@@ -21,6 +21,15 @@ router.param('collectionId', function(req, res, next, collectionId){
   next();
 });
 
+router.get('/collection/create/:collectionId', function(req, res, next) {
+  let data = '{"id" : "' + req.id + '", "name" : "' + 'Root' + '"}';
+  let pageData = { 
+    currentPage : 'manage',
+    model : data
+  };
+  res.render('manage/collection-edit', pageData);
+});
+
 router.get('/collection/detail/:collectionId', function(req, res, next) {
   let pageData = { 
     currentPage : 'manage',
