@@ -5,7 +5,9 @@ var globalVariables = {
     mySql : {
         address : '192.168.221.130',
         port : 3016,
-        schema : 'mmc'
+        schema : 'mmc',
+        user : 'root',
+        pass : 'root'
     },
     varibales : {
         uploadCache : 'D:\\sgk\\cache',

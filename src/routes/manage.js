@@ -22,7 +22,7 @@ router.param('collectionId', function(req, res, next, collectionId){
 });
 
 router.get('/collection/create/:collectionId', function(req, res, next) {
-  let data = '{"id" : "' + req.id + '", "name" : "' + 'Root' + '"}';
+  let data = '{"id" : "-1", "parent"  : "' + req.id +'", "name" : "' + 'Root' + '"}';
   let pageData = { 
     currentPage : 'manage',
     model : data

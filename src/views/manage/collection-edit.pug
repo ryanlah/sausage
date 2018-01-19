@@ -9,7 +9,7 @@ block scriptcontent
     script(src="/js/p-manage-collection-edit.js").
     
 block content
-    input#collectionData(type="hidden", value=model)
+    input#originalData(type="hidden", value=model)
     #app.container
         .row
             ol.breadcrumb
@@ -20,23 +20,24 @@ block content
         .row
             .panel.panel-default
                 .panel-heading
-                    span=collectionId > 0 ? "Edit Collection" : "Create Collection"
+                    span=model.id > 0 ? "Edit Collection" : "Create Collection"
                 .panel-body
                     .container.panel-space
-                        .alert.alert-danger(role="alert", v-if="showErrorTip") Please check your inputs
-                        form.form-horizontal
+                        .form-horizontal
                             .form-group
                                 label.col-sm-2.control-label Parent
-                                .col-sm-9: p.form-control-static {{collection.name}}
+                                .col-sm-9: p.form-control-static {{original.name}}
                             .form-group
                                 label.col-sm-2.control-label(for="ddlType") Type
                                 .col-sm-9
                                     select#ddlType.form-control(placeholder="Type", v-model="model.type")
-                                        option(value="c", selected="selected") Collection
+                                        option(value="c") Collection
                                         option(value="g") Gallery
-                            #gr-name(:class="validations.name.class")
+                            #gr-name(:class="['form-group',{'has-error' : nameHasError}, ]")
                                 label.col-sm-2.control-label(for="txtName") Name
-                                .col-sm-9: input#txtName.form-control(type="text", v-model="model.name", placeholder="Name")
+                                .col-sm-9
+                                    input#txtName.form-control(type="text", v-model="model.name", placeholder="Name")
+                                    span(:class="[{hidden:!nameHasError}, 'help-block']") Can't be empty
                             .form-group(v-if="model.type=='g'")
                                 label.col-sm-2.control-label(for="txtDesc") Description
                                 .col-sm-9: textarea#txtDesc.form-control(v-model="model.desc", rows="3", placeholder="Description")
@@ -48,8 +49,8 @@ block content
                                     input#uploadCoverFile.hidden(type="file", @change="setCoverFile($event)")
                             .form-group
                                 .col-sm-offset-2.col-sm-10
-                                    span.button-space: button.btn.btn-primary.button-size(type="submit", @click="save") SAVE
-                                    span.button-space: button.btn.btn-primary.button-size(type="button", @click="cancel") CANCEL
+                                    span.button-space: button.btn.btn-primary.button-size(@click="submit") SAVE
+                                    span.button-space: button.btn.btn-primary.button-size(@click="cancel") CANCEL
    
                         
 

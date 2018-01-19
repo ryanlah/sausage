@@ -9,7 +9,9 @@ var index = require('./routes/index');
 var stream = require('./routes/stream');
 var collection = require('./routes/collection');
 var manage = require('./routes/manage');
+
 var apiUpload = require('./routes/api/upload');
+var apiManage = require('./routes/api/manage');
 
 var app = express();
 
@@ -31,6 +33,7 @@ app.use('/collection', collection);
 app.use('/manage', manage);
 
 app.use('/api/upload', apiUpload);
+app.use('/api/manage', apiManage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

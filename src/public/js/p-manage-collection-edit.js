@@ -1,5 +1,12 @@
-let currentCol = JSON.parse($("#collectionData").val());
+const UPLOAD_CONFIG = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+};
+
+let originalData = JSON.parse($("#originalData").val());
 Vue.prototype.showCoverDialog = () => {$("#uploadCoverFile").trigger("click")};
+Vue.prototype.$http = axios;
 
 var app = new Vue({
     el : "#app",
@@ -10,48 +17,86 @@ var app = new Vue({
             cover : "",
             desc : ""
         },
-        collection : currentCol,
-        showErrorTip : false,
+        original : originalData,
         preview : "/img/cover-bg.jpg",
-        isValid : true,
-        validations : {
-            name : {
-                isValid : true,
-                class : "form-group",
-                validate : () => {
-                    if(that.model.name.trim() == ""){
-                        that.validations.name.class = "form-group has-error";
-                        that.validations.name.isValid = false;
-                    }else{
-                        that.validations.name.class = "form-group";
-                        that.validations.name.isValid = true;
-                    }
-                    
-                    return that.validations.name.isValid;
-                }
-            }
-        }
+        nameHasError : false,
+        coverFile : null
     },
     methods : {
-        save : function(){
-            this.validate();
-        },
         cancel : function(){
-            this.showErrorTip = true;
+            let url = "/manage/collection";
+
         },
         uploadCover : function(){
             this.showCoverDialog();
         },
         setCoverFile : function(event){
-            this.preview = window.URL.createObjectURL(event.target.files[0]);
+            let coverFile = event.target.files[0];
+            this.coverFile = coverFile;
+            this.preview = window.URL.createObjectURL(coverFile);
         },
         validate : function(){
-            for(var key in this.validations){
-                let isValid = this.validations[key].validate();
-                if(!validation.isValid){
-                    this.isValid = isValid;
-                }
+            let isValid = true;
+            if(this.model.name.trim() == ""){
+                isValid = false;
+                this.nameHasError = true;
+            }else{
+                this.nameHasError = false;
             }
+            return isValid;
+        },
+        submit : function(){
+            if(this.validate()){
+                let json = this.generateJson();
+                let url = this.fetchUrl();
+
+                this.postData(url, json, err => {
+                    console.log(err);
+                });
+            }
+        },
+        postData : function(url, json, callback){
+            this.$http.post(url, json)
+                .then(res => {
+                    let err = res.status == 200 ? null : new DOMException(res.status);
+                    callback(err);
+                })
+                .catch(err => {
+                    callback(err);
+                });
+        },
+        generateJson : function(){
+            let json = {};
+
+            if(this.model.type == "c"){ 
+                json.parent = this.original.parent;
+                json.name = this.model.name;
+            }
+
+            if(this.original.id > 0){
+                json.id = this.original.id; 
+            }
+
+            return json;
+        },
+        fetchUrl : function(){
+            let type = this.model.type == "c" ? "collection" : "gallery";
+            let mode = this.original.id > 0 ? "edit" : "create";
+            return `/api/manage/${type}/${mode}`;
+        },
+        submitGallery : function(){
+            let formData = new FormData();
+            formData.append("file", this.coverFile);
+            formData.append("", )
+
+            this.$http.post("/api/manage/collection/create", formData, UPLOAD_CONFIG)
+            .then(res => {
+                let err = res.status == 200 ? null : new DOMException(res.status);
+                callback(err);
+            })
+            .catch(err => {
+                callback(err);
+            });
         }
     }
 });
