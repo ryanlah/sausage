@@ -51,6 +51,12 @@ block content
                                 .col-sm-offset-2.col-sm-10
                                     span.button-space: button.btn.btn-primary.button-size(@click="submit") SAVE
                                     span.button-space: button.btn.btn-primary.button-size(@click="cancel") CANCEL
+                            .form-group
+                                .col-sm-offset-2.col-sm-9
+                                    .alert.alert-dismissible(v-if="result.showResult", :class="result.alertType", role="alert")
+                                        //button.close(data-dismiss="alert", aria-label="Close"): span(aria-hidden="true") &times;
+                                        span: <strong>{{result.title}}</strong> {{result.message}}
+                                            a(v-if="result.showLink", :href="result.url", class="alert-link") check it out !
    
                         
 
