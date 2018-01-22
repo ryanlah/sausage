@@ -6,6 +6,7 @@ var V = require('../../global');
 var router = express.Router();
 
 router.post('/collection/create', function(req, res, next) {
+<<<<<<< HEAD
     let sql = "INSERT INTO sausage.collections (parent, name) values (?, ?)"
     let paras = [req.body.parent, req.body.name];
 
@@ -16,6 +17,22 @@ router.post('/collection/create', function(req, res, next) {
             res.json({isSuccess : true, newId : id});
         }
     });
+=======
+    var paras = [req.body.name, req.body.parent];
+
+    dbo.executeNonQuery("INSERT INTO collections (name, parent) values (?, ?);", paras, 
+        (err, id) => {
+            let result = {};
+            if(err){
+                result.isSuccess = false;
+            }else{
+                result.isSuccess = true;
+                result.id = id;
+            }
+
+            res.json(result);
+        });
+>>>>>>> e0440018f4fafed3ef61f9deb8b431e34bd60177
 });
 
 router.post('/collection/edit', function(req, res, next) {

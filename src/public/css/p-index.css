@@ -10,6 +10,9 @@
     padding-top: 80px;
 }
 .jumbo-button {
+    width: 200px;
+}
+.jumbo-button-padding {
     padding-bottom: 80px;
 }
 .sections-container {

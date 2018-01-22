@@ -3,7 +3,7 @@ var globalVariables = {
         port : 8099
     },
     mySql : {
-        address : '192.168.221.130',
+        address : 'localhost',
         port : 3306,
         schema : 'sausage',
         user : 'root',
