@@ -5,152 +5,21 @@ block content
         .row
             ol.breadcrumb
                 li: a(href="/") Home
-                li.active Collection
-        .row
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg", alt="")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-        .row
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-        .row
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-        .row
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-        .row
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-            .col-sm-6.col-md-3
-                .thumbnail
-                    img(src="/img/img-thumb.jpg")
-                    .caption
-                        h3 Thumb Title
-                        p Some text here
-                        p: a.btn.btn-primary(href="#", role="button") GO
-        .row
-            include ../includes/pager.pug 
-            
+                li: a(href="/collection") Collection
+                if(currentCollection.id > 0)
+                    li: a(href=`/collection/detail/${currentCollection.parent}/1`) Up Level
+                li.active=currentCollection.name
+        if(records.length > 0)
+            .row
+                each col in records
+                    .col-sm-3.col-md-2
+                        .thumbnail
+                            img(src=col.type=="c" ? "/img/collection-bg.jpg" : col.cover, alt=col.name)
+                            .caption.text-center
+                                a(href=`/collection/${col.type=="c" ? "" : "gallery/"}detail/${col.id}/1`)=col.name
+            .row
+                include ../includes/pager.pug 
+        else
+            .row
+                .col-xs-12.text-center
+                    h3 No data found

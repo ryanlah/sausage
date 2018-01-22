@@ -20,22 +20,10 @@ html
             strong SAUSAGE
         #navbar.collapse.navbar-collapse.navbar-right
           ul(class="nav navbar-nav")
-            -if (currentPage == 'home')
-              li.active: a(href="/") Home
-            - else
-              li: a(href="/") Home
-            -if (currentPage == 'stream')
-              li.active: a(href="/stream") Stream
-            - else
-              li: a(href="/stream") Stream
-            -if (currentPage == 'collection')
-              li.active: a(href="/collection") Collection
-            - else
-              li: a(href="/collection") Collection
-            -if (currentPage == 'manage')
-              li.active: a(href="/manage") Manage
-            - else
-              li: a(href="/manage") Manage
+            li(class=currentPage == "home" ? "active" : ""): a(href="/") Home
+            li(class=currentPage == "stream" ? "active" : ""): a(href="/stream") Stream
+            li(class=currentPage == "collection" ? "active" : ""): a(href="/collection") Collection
+            li(class=currentPage == "manage" ? "active" : ""): a(href="/manage") Manage
     #main-container
       block content
     footer

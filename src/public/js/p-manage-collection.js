@@ -1,10 +1,10 @@
 function testData() {
     var data = [
-        {id:1, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
-        {id:2, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
-        {id:3, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
-        {id:4, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
-        {id:5, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
+        {id:1, name : "My Favorite", src : "/img/collection-bg.jpg", checked : false, style : false},
+        {id:2, name : "My Favorite", src : "/img/collection-bg.jpg", checked : false, style : false},
+        {id:3, name : "My Favorite", src : "/img/collection-bg.jpg", checked : false, style : false},
+        {id:4, name : "My Favorite", src : "/img/collection-bg.jpg", checked : false, style : false},
+        {id:5, name : "My Favorite", src : "/img/collection-bg.jpg", checked : false, style : false},
         {id:6, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
         {id:7, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},
         {id:8, name : "My Favorite", src : "/img/img-thumb.jpg", checked : false, style : false},

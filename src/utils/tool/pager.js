@@ -2,6 +2,27 @@ function pager (){
     
 }
 
+pager.prototype.pagging = function(total, pageSize, index){
+    let pagging = {
+        index : index,
+        total : total,
+        pageSize : pageSize,
+        totalPages : parseInt(Math.ceil(total/pageSize))
+    };
+
+    if(pagging.index < 1){
+        pagging.index = 1;
+    }
+
+    if(pagging.index > pagging.totalPages){
+        pagging.index = pagging.totalPages;
+    }
+
+    let startIndex = (pagging.index -1) * pageSize;
+    pagging.startIndex = startIndex > 0 ? startIndex : 0;
+
+    return pagging;
+};
 pager.prototype.calculate = function(total, index, urlBase){
     let pager = {};
 

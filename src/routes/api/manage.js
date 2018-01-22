@@ -1,13 +1,21 @@
 var express = require('express');
 var multer = require('multer');
+var dbo = require('../../utils/utils').dbo;
 var V = require('../../global');
 
 var router = express.Router();
-var upload = multer({ dest : V.varibales.uploadCache });
 
 router.post('/collection/create', function(req, res, next) {
-    //console.dir(req.file);
-    res.json({isSuccess : true});
+    let sql = "INSERT INTO sausage.collections (parent, name) values (?, ?)"
+    let paras = [req.body.parent, req.body.name];
+
+    dbo.executeNonQuery(sql, paras, (err, id, result)=>{
+        if(err){
+            res.json({isSuccess : false});
+        }else{
+            res.json({isSuccess : true, newId : id});
+        }
+    });
 });
 
 router.post('/collection/edit', function(req, res, next) {
@@ -15,12 +23,12 @@ router.post('/collection/edit', function(req, res, next) {
     res.json({isSuccess : true});
 });
 
-router.post('/gallery/create', upload.single('file'), function(req, res, next) {
+router.post('/gallery/create', function(req, res, next) {
     //console.dir(req.file);
     res.json({isSuccess : true});
 });
 
-router.post('/gallery/edit', upload.single('file'), function(req, res, next) {
+router.post('/gallery/edit', function(req, res, next) {
     //console.dir(req.file);
     res.json({isSuccess : true});
 });
