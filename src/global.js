@@ -14,11 +14,26 @@ var globalVariables = {
         uploadCache : 'D:\\sgk\\cache',
         staticFilesPath : 'D:\\sgk\\files',
         pageSize : 20,
-        thumbSize : {
+    },
+    image : {
+        thumb : {
             height : 400,
-            width : 400
+            width : 400,
+            quality : 80
         },
-        somethingElse : false 
+        highRes : {
+            minLength : 1200,
+            quality : 80
+        },
+        midRes : {
+            minLength : 800,
+            quality : 80
+        },
+        original : {
+            quality : 80
+        },
+        core : "im", 
+        format : "JPEG"
     }
 };
 
