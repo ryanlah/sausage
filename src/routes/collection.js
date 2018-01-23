@@ -28,7 +28,7 @@ var loadCollectionDatas = (id, page, url, callback) => {
       callback(err);
     }else{
       let pagging = pager.pagging(result, V.pageSize, page);
-      let sqlQueryCollection = 'SELECT id, name, cover, type, parent FROM sausage.v_collections_galleries WHERE parent = ? OR id = ? LIMIT ?, ?;';
+      let sqlQueryCollection = 'SELECT id, name, cover, type, parent FROM sausage.v_collections_galleries WHERE id = ? UNION (SELECT id, name, cover, type, parent FROM sausage.v_collections_galleries WHERE parent = ? ORDER BY id DESC LIMIT ?, ?);';
       let queryCollectionPara = [id, id, pagging.startIndex, pagging.pageSize];
 
       dbo.executeQuery(sqlQueryCollection, queryCollectionPara, (err, result) => {
@@ -41,7 +41,7 @@ var loadCollectionDatas = (id, page, url, callback) => {
 
           let pageData = {
             currentPage : 'collection', 
-            pager : pager.calculate(pagging.totalPages, 1, url),
+            pager : pager.calculate(pagging.totalPages, pagging.index, url),
             records : result,
             currentCollection : self
           };
@@ -57,7 +57,7 @@ var loadCollectionDatas = (id, page, url, callback) => {
 router.get('/', function(req, res, next) {
   loadCollectionDatas(0, 1, '/collection/detail/0/',(err, pageData) => {
     if(err){
-      res.sendStatus(500);
+      res.render('error', new Exception());
     }else{
       res.render('collection/index', pageData);
     }
@@ -82,6 +82,19 @@ router.get('/detail/:id/:page', function(req, res, next) {
       res.render('collection/index', pageData);
     }
   });
+});
+
+router.get('/gallery/:id/', function(req, res, next) {
+  // loadCollectionDatas(req.id, req.page,`/collection/detail/${req.id}/`, (err, pageData) => {
+  //   if(err){
+  //     res.sendStatus(500);
+  //   }else{
+  //     res.render('collection/index', pageData);
+  //   }
+  // });
+  var err = new Error('Internal Server Error');
+  err.status = 500;
+  next(err);
 });
 
 // router.get('/upload', function(req, res, next) {
