@@ -17,7 +17,8 @@ var globalVariables = {
         thumbSize : {
             height : 400,
             width : 400
-        }
+        },
+        somethingElse : false 
     }
 };
 
