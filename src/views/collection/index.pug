@@ -14,9 +14,9 @@ block content
                 each col in records
                     .col-sm-3.col-md-2
                         .thumbnail
-                            img(src=col.type=="c" ? "/img/collection-bg.jpg" : col.cover, alt=col.name)
-                            .caption.text-center
-                                a(href=`/collection/${col.type=="c" ? "" : "gallery/"}detail/${col.id}/1`)=col.name
+                            a(href=`/collection/${col.type=="c" ? "" : "gallery/"}detail/${col.id}/1`)
+                                img(src=col.type=="c" ? "/img/collection-bg.jpg" : col.cover, alt=col.name)
+                                .caption.text-center=col.name
             .row
                 include ../includes/pager.pug 
         else

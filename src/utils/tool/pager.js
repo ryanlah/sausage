@@ -26,6 +26,9 @@ pager.prototype.pagging = function(total, pageSize, index){
 pager.prototype.calculate = function(total, index, urlBase){
     let pager = {};
 
+    total = parseInt(total);
+    index = parseInt(index);
+
     pager.index = index;
     pager.total = total;
     pager.urlBase = urlBase;
