@@ -21,17 +21,6 @@ var globalVariables = {
             width : 400,
             quality : 80
         },
-        highRes : {
-            minLength : 1200,
-            quality : 80
-        },
-        midRes : {
-            minLength : 800,
-            quality : 80
-        },
-        original : {
-            quality : 80
-        },
         core : "im", 
         format : "JPEG"
     }
