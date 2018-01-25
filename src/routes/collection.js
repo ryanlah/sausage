@@ -29,7 +29,7 @@ router.param("page", function(req, res, next, page){
 router.get('/detail/:id/:page', function(req, res, next) {
   biz.loadCollectionDatas(req.id, req.page,`/collection/detail/${req.id}/`, (err, pageData) => {
     if(err){
-      res.sendStatus(500);
+      rext.send500();
     }else{
       res.render('collection/index', pageData);
     }

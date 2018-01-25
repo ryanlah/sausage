@@ -8,16 +8,11 @@ var getSize = function(path, callback){
     core(path).size(callback);
 };
 
-var getRandomFileName = function(path, callback){
-
-};
-
 function imageScale(){};
 
 imageScale.prototype.getSize = function(path, callback){
     getSize(path, callback);
 };
-
 
 imageScale.prototype.resize = function(file, newfile, format, size, crop, quality, callback){
     let resizeProcess = core(file).resize(size.width, size.height, size.mode);
@@ -32,7 +27,12 @@ imageScale.prototype.resize = function(file, newfile, format, size, crop, qualit
             if(err){
                 callback(err);
             }else{
-                callback(null, {file});
+                callback(null, {
+                    file : newfile, 
+                    format : format,
+                    size : crop == null ? size : {height : crop.height, width : crop.width},
+                    quality : quality
+                });
             }
         });
 };
@@ -45,52 +45,33 @@ imageScale.prototype.getThumb = function(source, target, callback){
             let crop = null;
             let newSize = {};
 
-            let oMaxLength = oSize.width > oSize.height ? oSize.width : oSize.height;
-            let newMinLength = V.thumb.width > V.thumb.height ? V.thumb.width : V.thumb.height;
-
-            let rate = (oSize.width * V.thumb.height)/(oSize.height * V.thumb.width);
-            if(rate > 1){
-                
-            }else if(rate < 1){
-
+            if(oSize.height < V.thumb.height && oSize.width < V.thumb.width){
+                newSize = {height : V.thumb.height, width : V.thumb.width, mode : "!"};
             }else{
-
+                let scaleRate = (V.thumb.height * oSize.width)/ (oSize.height * V.thumb.width);
+                let cropX = 0;
+                let cropY = 0;
+                if(scaleRate <= 1){
+                    newSize.height = parseInt(oSize.height * V.thumb.width / oSize.width);
+                    newSize.width = V.thumb.width;
+                    cropY = parseInt((newSize.height - V.thumb.height)/2);
+                }else{
+                    newSize.height = V.thumb.height;
+                    newSize.width = parseInt(oSize.width * V.thumb.height / oSize.height);
+                    cropX = parseInt((newSize.width - V.thumb.width)/2);
+                }
+                crop = { width : V.thumb.width, height : V.thumb.height, x : cropX, y : cropY};
             }
-            this.resize();
-            callback(null, originalSize);
+
+            this.resize(source, target, V.format, newSize, crop, V.thumb.quality, (err, info) => {
+                if(err){
+                    callback(err);
+                }else{
+                    callback(null, info);
+                }
+            });
         }
     });
-
-    // this.resize(source
-    //     , target
-    //     , V.format
-    //     , V.thumb);
 };
 
-let scale = new imageScale();
-// scale.resize("D:\\cache\\1.png", "D:\\cache\\scale.jpg", "JPEG", {width : 300, height: 300, mode : "!"}, {width: 163, height: 163, x : 68, y : 0}, 90, err =>{
-//     if(err){
-//         console.log(err);
-//     }else{
-        
-//         getSize("D:\\cache\\scale.jpg", (err, size) => {
-//             console.log(size);
-//         });
-//     }
-// })
-
-scale.resize("D:\\cache\\1.png", "D:\\cache\\scale.jpg", "JPEG", {width : 1200, height: 650, mode : "!"}, null, 100, err =>{
-    if(err){
-        console.log(err);
-    }else{
-        
-        getSize("D:\\cache\\scale.jpg", (err, size) => {
-            console.log(size);
-        });
-    }
-})
-
-
-// scale.getThumb("D:\\cache\\1.png", "", (err, size) => {
-//     console.log(size);
-// });
+module.exports = thumb;
