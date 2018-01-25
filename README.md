@@ -1,3 +1,3 @@
 # sausage
 
-Sausage a personal ablum system 
+A personal ablum system, supports images and videos
