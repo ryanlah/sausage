@@ -6,7 +6,7 @@ function tool(){
 
 tool.prototype.getDate = function(){
     let date = new Date();
-    let result = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    let result = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
     return result;
 };
 
@@ -18,7 +18,7 @@ tool.prototype.getTime = function(){
 
 tool.prototype.getFullDate = function(){
     let date = new Date();
-    let result = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    let result = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     return result;
 };
 

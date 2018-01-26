@@ -16,4 +16,16 @@ routerExtend.prototype.send401 = function(next, code, message){
     this.sendError(next, 401, "Unauthorized");
 };
 
+routerExtend.prototype.getPageDataMaker = function(controller){
+    return new pageDataMaker();
+};
+
+function pageDataMaker(controller){
+    this.controller = controller;
+    this.getPageData = (pageData) => {
+        pageData.currentPage = this.controller;
+        return pageData;
+    };
+};
+
 module.exports = routerExtend;

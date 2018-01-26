@@ -1,7 +1,11 @@
 var express = require('express');
-var page = require('../utils/tool/pager');
+var pager = require('../utils/utils').pager;
+var colBiz = require('../biz/collections');
+var rext = require('../utils/utils').rext;
+
 var router = express.Router();
-var pager = new page();
+var biz = new colBiz();
+var dataMaker = rext.getPageDataMaker('collection');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,12 +26,23 @@ router.param('collectionId', function(req, res, next, collectionId){
 });
 
 router.get('/collection/create/:collectionId', function(req, res, next) {
-  let data = '{"id" : "-1", "parent"  : "' + req.id +'", "name" : "' + 'Root' + '"}';
+  let data = '{"id" : "-1", "parent"  : "' + req.id +'", "name" : ""}';
   let pageData = { 
     currentPage : 'manage',
     model : data
   };
   res.render('manage/collection-edit', pageData);
+});
+
+router.get('/collection/edit/:collectionId', function(req, res, next) {
+  biz.getCollection(req.id, (err, current) => {
+    let data = '{"id" : "' + current.id + '", "parent"  : "' + current.parent +'", "name" : "' + current.name + '"}';
+    let pageData = { 
+      currentPage : 'manage',
+      model : data
+    };
+    res.render('manage/collection-edit', pageData);
+  });
 });
 
 router.get('/collection/detail/:collectionId', function(req, res, next) {
@@ -39,11 +54,9 @@ router.get('/collection/detail/:collectionId', function(req, res, next) {
 });
 
 router.get('/collection/detail', function(req, res, next) {
-  let pageData = { 
-    currentPage : 'manage',
+  res.render('manage/collection-detail',  dataMaker.getPageData({
     collectionId : -1
-  };
-  res.render('manage/collection-detail', pageData);
+  }));
 });
 
 module.exports = router;

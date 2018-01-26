@@ -20,7 +20,7 @@ var findItem = function(list, condition){
   
   
 collectionBiz.prototype.loadCollectionDatas = (id, page, url, callback) => { 
-  let sqlGetRecordsCount = 'SELECT COUNT(1) FROM sausage.v_collections_galleries WHERE parent = ?;';
+  let sqlGetRecordsCount = 'SELECT COUNT(1) AS total FROM sausage.v_collections_galleries WHERE parent = ?;';
   let getRecordsCountParas = [id];
   
   dbo.executeScalar(sqlGetRecordsCount, getRecordsCountParas, (err, result) => {
@@ -95,5 +95,14 @@ collectionBiz.prototype.getCollection = (id, callback) => {
     }
   );
 };
+
+collectionBiz.prototype.getCollectionChilds = function(id, page, callback){
+  let countSql = 'SELECT COUNT(1) AS total FROM sausage.v_collections_galleries WHERE parent = ?;';
+  let countPara = [id];
+
+  dbo.executeScalar(countSql, countPara, (err, result) => {
+    
+  });
+}
 
 module.exports = collectionBiz;

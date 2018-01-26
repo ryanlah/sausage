@@ -14,6 +14,8 @@ var globalVariables = {
         uploadCache : 'D:\\sgk\\cache',
         staticFilesPath : 'D:\\sgk\\files',
         pageSize : 20,
+        logFile : 'D:\\sgk\\log',
+        newLine : '\r\n'
     },
     image : {
         thumb : {
