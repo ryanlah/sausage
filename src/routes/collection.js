@@ -1,6 +1,6 @@
 var express = require('express');
 var cobiz = require('../biz/collections');
-var utils = require('../utils/utils').rext;
+var rext = require('../utils/utils').rext;
 var logger = require('../utils/utils').logger;
 
 var router = express.Router();

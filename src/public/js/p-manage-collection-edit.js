@@ -13,8 +13,8 @@ var app = new Vue({
     el : "#app",
     data : {
         model : {
-            name : "",
-            type : "c",
+            name : originalData.name,
+            type : originalData.type,
             cover : "",
             desc : ""
         },

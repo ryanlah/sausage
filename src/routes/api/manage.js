@@ -25,7 +25,7 @@ router.param("id", function(req, res, next, id){
     req.body.id = id;
 });
 
-router.post('/collection/edit', function(req, res, next) {
+router.post('/collection/edit/:id', function(req, res, next) {
     let model = {name : req.body.name, parent : req.body.parent, id : req.body.id};
     biz.updateCollection(model, (err, id) => {
         let result = {};

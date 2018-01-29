@@ -63,7 +63,7 @@ var app = new Vue({
             this.redirect(url);
         },
         editSelected : function(){
-            let url = "/manage/collection/edit/" + this.selected[0].id;
+            let url = "/manage/collection/edit/" + this.collectionId;
             this.redirect(url);
         },
         deleteSelected : function(){

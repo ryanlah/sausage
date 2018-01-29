@@ -82,7 +82,7 @@ collectionBiz.prototype.updateCollection = (model, callback) => {
 };
 
 collectionBiz.prototype.getCollection = (id, callback) => {
-  sql = "SELECT id, name, parent, created, updated FROM collections WHERE id = ?;";
+  sql = "SELECT c.id, c.name, c.parent, ifnull(p.name, 'Root') AS parentName, c.created, c.updated FROM collections c LEFT JOIN collections p ON c.parent = p.id WHERE c.id = ?;";
   var para = [id];
 
   dbo.executeQuery(sql, para,
@@ -90,14 +90,15 @@ collectionBiz.prototype.getCollection = (id, callback) => {
       if(err){
         callback(err);
       }else{
-        callback(null, data);
+        let current = data.length == 0 ? null : data[0];
+        callback(null, current);
       }
     }
   );
 };
 
 collectionBiz.prototype.getCollectionChilds = function(id, page, callback){
-  let countSql = 'SELECT COUNT(1) AS total FROM sausage.v_collections_galleries WHERE parent = ?;';
+  let countSql = 'SELECT COUNT(1) AS total FROM v_collections_galleries WHERE parent = ?;';
   let countPara = [id];
 
   dbo.executeScalar(countSql, countPara, (err, result) => {

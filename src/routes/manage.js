@@ -26,17 +26,19 @@ router.param('collectionId', function(req, res, next, collectionId){
 });
 
 router.get('/collection/create/:collectionId', function(req, res, next) {
-  let data = '{"id" : "-1", "parent"  : "' + req.id +'", "name" : ""}';
-  let pageData = { 
-    currentPage : 'manage',
-    model : data
-  };
-  res.render('manage/collection-edit', pageData);
+  biz.getCollection(0, (err, parent) => {
+    let data = `{"id" : "-1", "parentName" : "${parent.name}", parent"  : "${parent.id}", "name" : "", "type" : "c"}`;
+    let pageData = { 
+      currentPage : 'manage',
+      model : data
+    };
+    res.render('manage/collection-edit', pageData);
+  });
 });
 
 router.get('/collection/edit/:collectionId', function(req, res, next) {
   biz.getCollection(req.id, (err, current) => {
-    let data = '{"id" : "' + current.id + '", "parent"  : "' + current.parent +'", "name" : "' + current.name + '"}';
+    let data = `{"id" : "${current.id}", "parentName" : "${current.parentName}", "parent"  : "${current.parent}", "name" : "${current.name}", "type" : "c"}`;
     let pageData = { 
       currentPage : 'manage',
       model : data
