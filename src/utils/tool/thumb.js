@@ -74,4 +74,38 @@ imageScale.prototype.getThumb = function(source, target, callback){
     });
 };
 
-module.exports = thumb;
+imageScale.prototype.getThumb2 = function(source, target, callback){
+    getSize(source, (err, oSize) => {
+        if(err){
+            callback(err);
+        }else{
+            let crop = null;
+            let newSize = {};
+
+            if(oSize.height < V.thumb.height && oSize.width < V.thumb.width){
+                newSize = {height : V.thumb.height, width : V.thumb.width, mode : "!"};
+            }else{
+                let scaleRate = (V.thumb.height * oSize.width)/ (oSize.height * V.thumb.width);
+
+                if(scaleRate <= 1){
+                    newSize.height = parseInt(oSize.height * V.thumb.width / oSize.width);
+                    newSize.width = V.thumb.width;
+                }else{
+                    newSize.height = V.thumb.height;
+                    newSize.width = parseInt(oSize.width * V.thumb.height / oSize.height);
+                }
+                crop = { width : V.thumb.width, height : V.thumb.height, x : 0, y : 0};
+            }
+
+            this.resize(source, target, V.format, newSize, crop, V.thumb.quality, (err, info) => {
+                if(err){
+                    callback(err);
+                }else{
+                    callback(null, info);
+                }
+            });
+        }
+    });
+};
+
+module.exports = imageScale;

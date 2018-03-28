@@ -8,7 +8,7 @@ var router = express.Router();
 var biz = new colBiz();
 
 router.post('/collection/create', function(req, res, next) {
-    let model = {name : req.body.name, parent : req.body.parent};
+    let model = {name : req.body.name, parent : req.body.parent, cover : req.body.cover};
     biz.newCollectiion(model, (err, id) => {
         let result = {};
         if(err){

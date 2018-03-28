@@ -6,6 +6,7 @@ var pager = require('./tool/pager');
 var dobj = require('./tool/dynamicObject');
 var rext = require('./tool/routerExtend');
 var logger = require('./tool/log');
+var imgScale = require('./tool/thumb');
 
 var utils = {
     fso : new fso(),
@@ -14,7 +15,8 @@ var utils = {
     pager : new pager(),
     dobj : new dobj(),
     rext : new rext(),
-    logger : new logger()
+    logger : new logger(),
+    imgScale : new imgScale()
 };
 
 module.exports = utils;

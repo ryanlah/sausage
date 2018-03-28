@@ -21,30 +21,22 @@ block content
             .panel.panel-default
                 .panel-heading
                     span=model.id >= 0 ? "Edit Collection" : "Create Collection"
+                    span {{originalData.parentName}}
                 .panel-body
                     .container.panel-space
                         .form-horizontal
                             .form-group
                                 label.col-sm-2.control-label Parent
                                 .col-sm-9: p.form-control-static {{original.parentName}}
-                            .form-group
-                                label.col-sm-2.control-label(for="ddlType") Type
-                                .col-sm-9
-                                    select#ddlType.form-control(placeholder="Type", v-model="model.type")
-                                        option(value="c") Collection
-                                        option(value="g") Gallery
                             #gr-name(:class="['form-group',{'has-error' : nameHasError}, ]")
                                 label.col-sm-2.control-label(for="txtName") Name
                                 .col-sm-9
                                     input#txtName.form-control(type="text", v-model="model.name", placeholder="Name")
                                     span(:class="[{hidden:!nameHasError}, 'help-block']") Can't be empty
-                            .form-group(v-if="model.type=='g'")
-                                label.col-sm-2.control-label(for="txtDesc") Description
-                                .col-sm-9: textarea#txtDesc.form-control(v-model="model.desc", rows="3", placeholder="Description")
-                            .form-group(v-if="model.type=='g'")
+                            .form-group
                                 label.col-sm-2.control-label(for="txtRoot") Cover
                                 .col-sm-9
-                                    a.thumbnail(href="#", @click="uploadCover").cover
+                                    a.thumbnail(href="#", @click="setCover").cover
                                         img(:src="preview", alt="Cover").preview-size
                                     input#uploadCoverFile.hidden(type="file", @change="setCoverFile($event)")
                             .form-group
@@ -54,7 +46,6 @@ block content
                             .form-group
                                 .col-sm-offset-2.col-sm-9
                                     .alert.alert-dismissible(v-if="result.showResult", :class="result.alertType", role="alert")
-                                        //button.close(data-dismiss="alert", aria-label="Close"): span(aria-hidden="true") &times;
                                         span: <strong>{{result.title}}</strong> {{result.message}}
                                             a(v-if="result.showLink", :href="result.url", class="alert-link") check it out !
    

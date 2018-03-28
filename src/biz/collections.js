@@ -54,8 +54,8 @@ collectionBiz.prototype.loadCollectionDatas = (id, page, url, callback) => {
 };
 
 collectionBiz.prototype.newCollectiion = (model, callback) => {
-  let sql = "INSERT INTO collections (name, parent) values (?, ?);";
-  let paras = [model.name, model.parent];
+  let sql = "INSERT INTO collections (name, parent, cover) values (?, ?, ?);";
+  let paras = [model.name, model.parent, model.cover];
 
   dbo.executeNonQuery(sql, paras, 
     (err, id) => {
@@ -69,7 +69,7 @@ collectionBiz.prototype.newCollectiion = (model, callback) => {
 
 collectionBiz.prototype.updateCollection = (model, callback) => {
   let sql = "UPDATE collections SET name = ?, parent = ?, updated = CURRENT_TIMESTAMP WHERE id = ?);"
-  var paras = [model.name, model.parent, model.id];
+  let paras = [model.name, model.parent, model.id];
 
   dbo.executeNonQuery(sql, paras, 
     (err, effected) => {
@@ -82,8 +82,8 @@ collectionBiz.prototype.updateCollection = (model, callback) => {
 };
 
 collectionBiz.prototype.getCollection = (id, callback) => {
-  sql = "SELECT c.id, c.name, c.parent, ifnull(p.name, 'Root') AS parentName, c.created, c.updated FROM collections c LEFT JOIN collections p ON c.parent = p.id WHERE c.id = ?;";
-  var para = [id];
+  let sql = "SELECT c.id, c.name, c.cover, c.created, c.updated FROM collections c WHERE c.id = ?;";
+  let para = [id];
 
   dbo.executeQuery(sql, para,
     (err, data) => {

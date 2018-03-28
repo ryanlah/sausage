@@ -14,8 +14,9 @@ var app = new Vue({
     data : {
         model : {
             name : originalData.name,
-            parent : originalData.parent,
-            cover : originalData.cover == "" ? "/img/cover-bg.jpg" : originalData.cover,
+            type : originalData.type,
+            cover : "",
+            desc : ""
         },
         result : {
             alertType : "",
@@ -35,7 +36,7 @@ var app = new Vue({
             let url = "/manage/collection";
             this.redirect(url);
         },
-        setCover : function(){
+        uploadCover : function(){
             this.showCoverDialog();
         },
         setCoverFile : function(event){
@@ -55,28 +56,22 @@ var app = new Vue({
         },
         submit : function(){
             if(this.validate()){
-                this.uploadCover((err, res) => {
-                    if(err){
-                        callback(err);
-                    }else{
-                        let json = this.generateJson();
-                        let url = this.fetchUrl();
+                let json = this.generateJson();
+                let url = this.fetchUrl();
 
-                        this.postData(url, json, (err, data) => {
-                            this.result.showResult = true;
-                            if(err == null && data.isSuccess){
-                                this.result.alertType = "alert-success";
-                                this.result.title = "Success";
-                                this.result.message = "create new collection successfully, ";
-                                this.result.showLink = true;
-                                this.result.url = "/manage/collction/detail/" + data.id;
-                            }else{
-                                this.result.title = "Fail";
-                                this.result.message = "failed to create a new collection.";
-                                this.result.alertType = "alert-danger";
-                                this.result.showLink = false;
-                            }
-                        });
+                this.postData(url, json, (err, data) => {
+                    this.result.showResult = true;
+                    if(err == null && data.isSuccess){
+                        this.result.alertType = "alert-success";
+                        this.result.title = "Success";
+                        this.result.message = "create new collection successfully, ";
+                        this.result.showLink = true;
+                        this.result.url = "/manage/collction/detail/" + data.id;
+                    }else{
+                        this.result.title = "Fail";
+                        this.result.message = "failed to create a new collection.";
+                        this.result.alertType = "alert-danger";
+                        this.result.showLink = false;
                     }
                 });
             }
@@ -94,9 +89,10 @@ var app = new Vue({
         generateJson : function(){
             let json = {};
 
-            json.parent = this.original.parent;
-            json.name = this.model.name;
-            json.cover = this.model.cover;
+            if(this.model.type == "c"){ 
+                json.parent = this.original.parent;
+                json.name = this.model.name;
+            }
 
             if(this.original.id > 0){
                 json.id = this.original.id; 
@@ -105,22 +101,23 @@ var app = new Vue({
             return json;
         },
         fetchUrl : function(){
+            let type = this.model.type == "c" ? "collection" : "gallery";
             let mode = this.original.id > 0 ? "edit" : "create";
-            return `/api/manage/collection/${mode}`;
+            return `/api/manage/${type}/${mode}`;
         },
-        uploadCover : function(callback){
+        submitGallery : function(){
             let formData = new FormData();
-            formData.append('file', this.coverFile);
+            formData.append("file", this.coverFile);
+            formData.append("", )
 
-            this.$http.post("/api/upload/thumb", formData, UPLOAD_CONFIG)
-                .then(res => {
-                    let err = res.status == 200 ? null : new DOMException(res.status);
-                    this.model.cover = res.data.fileId;
-                    callback(err, res);
-                })
-                .catch(err => {
-                    callback(err);
-                });
+            this.$http.post("/api/manage/collection/create", formData, UPLOAD_CONFIG)
+            .then(res => {
+                let err = res.status == 200 ? null : new DOMException(res.status);
+                callback(err);
+            })
+            .catch(err => {
+                callback(err);
+            });
         }
     }
 });

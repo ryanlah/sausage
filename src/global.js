@@ -3,18 +3,19 @@ var globalVariables = {
         port : 8099
     },
     mySql : {
-        address : '192.168.221.130',
+        address : 'localhost',
         port : 3306,
         schema : 'sausage',
         user : 'root',
-        pass : 'root',
+        pass : '',
         connectionLimit : 10
     },
     varibales : {
-        uploadCache : 'D:\\sgk\\cache',
-        staticFilesPath : 'D:\\sgk\\files',
+        uploadCache : 'E:\\SausageWeb\\Cache',
+        coverFilePath : 'E:\\SausageWeb\\Files\\Cover',
+        staticFilesPath : 'E:\\SausageWeb\\Files',
         pageSize : 20,
-        logFile : 'D:\\sgk\\log',
+        logFile : 'E:\\SausageWeb\\Log',
         newLine : '\r\n'
     },
     image : {

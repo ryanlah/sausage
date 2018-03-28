@@ -26,8 +26,8 @@ router.param('collectionId', function(req, res, next, collectionId){
 });
 
 router.get('/collection/create/:collectionId', function(req, res, next) {
-  biz.getCollection(0, (err, parent) => {
-    let data = `{"id" : "-1", "parentName" : "${parent.name}", parent"  : "${parent.id}", "name" : "", "type" : "c"}`;
+  biz.getCollection(req.id, (err, parent) => {
+    let data = `{"id" : "-1", "parentName" : "${parent.name}", "parent"  : "${parent.id}", "name" : "", "cover" : ""}`;
     let pageData = { 
       currentPage : 'manage',
       model : data
